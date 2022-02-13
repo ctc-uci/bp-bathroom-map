@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+
 // Routes (backend address for front end to reach)
 // ex const testRoute = require('./routes/testRoute');
 const bathroomRoute = require('./routes/bathrooms');
@@ -13,9 +14,15 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Connect to MongoDB
+
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+});
+
+// Display this when mongoose successfully connects to the database
+mongoose.connection.on("open", function(){
+  console.log("mongodb is connected!!");
 });
 
 app.use(
@@ -38,3 +45,5 @@ app.use('/bathrooms', bathroomRoute);
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
+
+

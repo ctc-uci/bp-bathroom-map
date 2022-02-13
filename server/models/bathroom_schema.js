@@ -9,4 +9,4 @@ const bathroomSchema = new mongoose.Schema({
   img: String,
 });
 
-module.exports = mongoose.model('bathrooms', bathroomSchema, 'bathrooms');
+module.exports = mongoose.model('Bathroom', bathroomSchema, 'bathrooms');
