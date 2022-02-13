@@ -15,7 +15,7 @@ const router = express.Router();
 // 300=redirect
 // 404=not found
 // 500=error
-router.get('/bathrooms', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const filter = {}; // Condition for object to meet
     const mongoResponse = await Bathroom.find(filter); // Select those that met the condition

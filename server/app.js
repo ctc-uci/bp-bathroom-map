@@ -33,7 +33,7 @@ app.use(
 // Add routes here
 // ex: app.use(routeName);
 // All requests arrive at App.js so now App.js redirects us to the right route
-app.use(bathroomRoute);
+app.use('/bathrooms', bathroomRoute);
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
