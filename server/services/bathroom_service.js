@@ -1,6 +1,7 @@
 
 const Bathroom = require('../models/bathroom_schema');
 
+
 // Query
 module.exports = {
   // Query 1: Get all bathrooms
