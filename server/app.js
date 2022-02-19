@@ -1,12 +1,12 @@
-//test all
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-// Importing routes
-// Routes define how the server will respond to client requests
+// Importing routes to define how the server will respond to client requests
 // Read more about routing here: https://expressjs.com/en/starter/basic-routing.html
 const bathroomRoute = require('./routes/bathrooms');
+const reviewRoute = require('./routes/add-review.js')
+const ratingRout = require('./routes/add-rating.js')
 
 // Grab configuration variables from the .env file
 require('dotenv').config();
@@ -43,37 +43,41 @@ app.use(
 // Adding routes (imported above)
 // All requests arrive at App.js so now App.js redirects us to the right route
 // Any request to '/bathrooms' will be sent to bathroomRoute to be handled
-app.use('/bathrooms', bathroomRoute);
+app.use('/bathrooms', bathroomRoute); 
+// localhost:3001/bathrooms
+app.use('/review', reviewRoute); 
+// localhost:3001/review?id=62081a3071799594b34a3c42&review=not+clean
+app.use('/rate', ratingRout); 
+// localhost:3001/rate?id=62081a3071799594b34a3c42&rate=4
 
+// Run the server
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 /* 
 
 //////////////////////////////// SKELETON //////////////////////////////////
-- connect to MongoDB + create table structure
-    + bathroom table:
-        - rating
-        - availability
-        - type of bathrooms (gender inclusive, only male, only female, both?)
-    + tags table:
-        - tag name
-        - bathroom that the tag belongs to
-    + review:
-        - review's content
-        - bathroom that the review is for
+- bathroom table structure
+    - _id : string
+    - name : string
+    - latitude : float
+    - longitude : float
+    - img : string
+    - type : (“gender inclusive”, “male only”, “female only”, “splitted”) (array of strings)
+    - availability : string "0:00 to 24:00"
+    - avg_rating : string "<0-5>/5"
+    - rating_count : int
+    - review : (array of string)
+    - tags : (array of strings) 
+
 - handle HTTP request from client:
     + Needs + wants:
         1/set up client's frontend with:
           - front end files (HTML, CSS, JS, etc.)
-          - list of bathrooms with the following infos for each:
-            + rating 
-            + review 
-            + availability (hours of service?)
-            + tags
-            + type of bathrooms (gender inclusive, only male, only female, both?)
-        2/adding review to MongoDB
-        3/recalculate rating in MongoDB
+          - list of bathrooms with the following infos for each (TO DO)
+        3/getting closest bathroom 
+        2/adding review to MongoDB (TO DO)
+        3/recalculate rating in MongoDB (TO DO)
     + Nice to have (I think this will require user to have account):
         1/ favorite bathroom list
         2/ bathroom emergency ping
