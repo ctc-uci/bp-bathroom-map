@@ -1,16 +1,24 @@
+/*global google*/
+
 import React from 'react';
-import './App.css';
+import { compose, withProps, lifecycle } from 'recompose';
 import {
   GoogleMap,
+  withGoogleMap,
   useLoadScript,
   Marker,
   InfoWindow,
   DirectionsRenderer,
 } from "@react-google-maps/api"
-import ClosestBathroomButton from './components/ClosestBathroomButton';
 import { useState, useEffect } from 'react'
-import restrooms from "./assets/restrooms.json"
 import axios from "axios"
+
+import './App.css';
+import ClosestBathroomButton from './components/ClosestBathroomButton';
+import restrooms from "./assets/restrooms.json";
+import RestroomMarker from './components/RestroomMarker';
+import anteaterMarker from './assets/anteater_marker.png';
+import findClosestMarker from './functions/findClosestMarker';
 
 /*
 
@@ -20,8 +28,14 @@ rely on it to give walking directions yet.
 
 */
 
-
 function App() {
+  // load markers from backend
+  var DirectionsService;
+  const [lat, setLat] = useState(33.64592727868923)
+  const [lng, setLng] = useState(-117.84273979898299)
+  const [destination, setDestination] = useState(null);
+  const [directions, setDirections] = useState(null);
+
   // start the application by centering the map on the user's location
   useEffect(() => {
     navigator.geolocation.watchPosition((position) => {
@@ -31,15 +45,39 @@ function App() {
     })
   })
 
-  // load markers from backend
-  const [lat, setLat] = useState(33.64592727868923)
-  const [lng, setLng] = useState(-117.84273979898299)
+  // on first render,
+  useEffect(() => {
+    DirectionsService = new window.google.maps.DirectionsService();
+  }, [])
 
-  // set dimensions of map
+  const findDirections = () => {
+    console.log('clicked');
+    let closest = findClosestMarker(lat, lng, restrooms.restrooms);
+    console.log(closest);
+
+    DirectionsService.route({
+      origin: new window.google.maps.LatLng(lat, lng),
+      destination: new window.google.maps.LatLng(closest.latitude, closest.longitude),
+      travelMode: window.google.maps.TravelMode.WALKING,
+    }, (result, status) => {
+      console.log(result);
+      if (status === window.google.maps.DirectionsStatus.OK) {
+        setDirections(result);
+        // get distance
+        // get walking time
+      } else {
+        console.error(`error fetching directions ${result}`);
+      }
+    })
+  }
+
+
   const mapContainerStyle = {
     width: "100vw",
     height: "90vh"
   }
+
+  // set dimensions of map
 
   const {isLoaded, loadError} = useLoadScript({
     googleMapsApiKey : process.env.REACT_APP_MAPS_API_KEY,
@@ -60,15 +98,22 @@ function App() {
 
   return (
     <div class="App">
-      <GoogleMap mapContainerStyle={mapContainerStyle} zoom = {16} center = {{lat:lat, lng:lng}}>
+      <GoogleMap className="mapContainer" mapContainerStyle={mapContainerStyle} style={{width: "100vw", height: "90vh"}} zoom = {16} center = {{lat:lat, lng:lng}}>
         {restrooms.restrooms.map((item)=>(
-          <Marker
+          <RestroomMarker
             key={item.id}
             position={{lat:item.latitude, lng:item.longitude}}
+            data={item}
           />
         ))}
+        {
+          lat && lng &&
+          <Marker position={{lat: lat, lng: lng}} icon={anteaterMarker}/>
+        }
+
+        <DirectionsRenderer directions={directions}/>
       </GoogleMap>
-      <ClosestBathroomButton></ClosestBathroomButton>
+      <ClosestBathroomButton clickHandler={findDirections}></ClosestBathroomButton>
     </div>
   );
 }

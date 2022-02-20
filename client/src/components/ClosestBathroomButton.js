@@ -1,9 +1,9 @@
 import React from 'react'
 import './closestBathroomButton.css'
 
-const ClosestBathroomButton = () => {
+const ClosestBathroomButton = (props) => {
   return (
-    <button class="bathroom-button bathroom-button-text">Find Closest Restroom</button>
+    <button class="bathroom-button bathroom-button-text" onClick={props.clickHandler}>Find Closest Restroom</button>
   )
 }
 
