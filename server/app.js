@@ -5,8 +5,7 @@ const mongoose = require('mongoose');
 // Importing routes to define how the server will respond to client requests
 // Read more about routing here: https://expressjs.com/en/starter/basic-routing.html
 const bathroomRoute = require('./routes/bathrooms');
-const reviewRoute = require('./routes/add-review.js')
-const ratingRout = require('./routes/add-rating.js')
+const reviewRoute = require('./routes/review');
 
 // Grab configuration variables from the .env file
 require('dotenv').config();
@@ -43,12 +42,10 @@ app.use(
 // Adding routes (imported above)
 // All requests arrive at App.js so now App.js redirects us to the right route
 // Any request to '/bathrooms' will be sent to bathroomRoute to be handled
-app.use('/bathrooms', bathroomRoute); 
+app.use('/bathrooms', bathroomRoute);
 // localhost:3001/bathrooms
 app.use('/review', reviewRoute); 
-// localhost:3001/review?id=62081a3071799594b34a3c42&review=not+clean
-app.use('/rate', ratingRout); 
-// localhost:3001/rate?id=62081a3071799594b34a3c42&rate=4
+// localhost:3001/review?id=62081a3071799594b34a3c42&rate=4&review=not+clean
 
 // Run the server
 app.listen(PORT, () => {
