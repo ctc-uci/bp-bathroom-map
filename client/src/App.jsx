@@ -11,11 +11,11 @@ import {
   DirectionsRenderer,
 } from "@react-google-maps/api"
 import { useState, useEffect } from 'react'
-import axios from "axios"
+import Axios from "axios"
 
 import './App.css';
 import ClosestBathroomButton from './components/ClosestBathroomButton';
-import restrooms from "./assets/restrooms.json";
+//import restrooms from "./assets/restrooms.json";
 import RestroomMarker from './components/RestroomMarker';
 import anteaterMarker from './assets/anteater_marker.png';
 import findClosestMarker from './functions/findClosestMarker';
@@ -35,24 +35,29 @@ function App() {
   const [lng, setLng] = useState(-117.84273979898299)
   const [destination, setDestination] = useState(null);
   const [directions, setDirections] = useState(null);
+  const [listOfBathrooms, setListOfBathrooms] = useState([])
 
   // start the application by centering the map on the user's location
   useEffect(() => {
     navigator.geolocation.watchPosition((position) => {
       setLat(position.coords.latitude)
       setLng(position.coords.longitude)
-      console.log(lat,lng)
+      //console.log(lat,lng)
     })
-  })
+    Axios.get("http://localhost:3001/bathrooms").then((response) => {
+      setListOfBathrooms(response.data)
+    })
+  },[])
+
 
   // on first render,
-  useEffect(() => {
-    DirectionsService = new window.google.maps.DirectionsService();
-  }, [])
+  // useEffect(() => {
+  //   DirectionsService = new window.google.maps.DirectionsService();
+  // }, [])
 
   const findDirections = () => {
     console.log('clicked');
-    let closest = findClosestMarker(lat, lng, restrooms.restrooms);
+    let closest = findClosestMarker(lat, lng, listOfBathrooms);
     console.log(closest);
 
     DirectionsService.route({
@@ -87,6 +92,7 @@ function App() {
 
   if(!isLoaded) return "Loading maps"
 
+  DirectionsService = new window.google.maps.DirectionsService();
   /*
 
   kind of a lot to unpack here, but the <GoogleMap> tag renders
@@ -99,9 +105,9 @@ function App() {
   return (
     <div class="App">
       <GoogleMap className="mapContainer" mapContainerStyle={mapContainerStyle} style={{width: "100vw", height: "90vh"}} zoom = {16} center = {{lat:lat, lng:lng}}>
-        {restrooms.restrooms.map((item)=>(
+        {listOfBathrooms.map((item)=>(
           <RestroomMarker
-            key={item.id}
+            key={item._id}
             position={{lat:item.latitude, lng:item.longitude}}
             data={item}
           />
