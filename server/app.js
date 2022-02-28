@@ -44,15 +44,14 @@ app.use(
 // Any request to '/bathrooms' will be sent to bathroomRoute to be handled
 app.use('/bathrooms', bathroomRoute);
 // localhost:3001/bathrooms
-app.use('/review', reviewRoute); 
+app.use('/review', reviewRoute);
 // localhost:3001/review?id=62081a3071799594b34a3c42&rate=4&review=not+clean
 
 // Run the server
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
-/* 
-
+/*
 //////////////////////////////// SKELETON //////////////////////////////////
 - bathroom table structure
     - _id : string
@@ -65,14 +64,13 @@ app.listen(PORT, () => {
     - avg_rating : string "<0-5>/5"
     - rating_count : int
     - review : (array of string)
-    - tags : (array of strings) 
-
+    - tags : (array of strings)
 - handle HTTP request from client:
     + Needs + wants:
         1/set up client's frontend with:
           - front end files (HTML, CSS, JS, etc.)
           - list of bathrooms with the following infos for each (TO DO)
-        3/getting closest bathroom 
+        3/getting closest bathroom
         2/adding review to MongoDB (TO DO)
         3/recalculate rating in MongoDB (TO DO)
     + Nice to have (I think this will require user to have account):
