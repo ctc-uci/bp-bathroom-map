@@ -1,0 +1,27 @@
+@font-face{
+  font-family: 'SF-Pro';
+  src: url("../assets/SF-Pro.OTF") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+.bathroom-button{
+  background-color: #007BFF;
+  border-radius: 4.8px;
+  text-align: center;
+  width: 75vw;
+  height: 5vh;
+  border-width: 0px;
+}
+
+.bathroom-button:hover{
+  cursor: pointer;
+}
+
+.bathroom-button-text{
+  color: white;
+  font-family: 'SF-Pro';
+  font-style: normal;
+  font-weight:lighter;
+  font-size: 100%;
+}
