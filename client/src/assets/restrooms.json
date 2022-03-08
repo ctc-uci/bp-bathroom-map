@@ -1,0 +1,150 @@
+{
+  "restrooms": [
+      {
+          "id": "1",
+          "latitude": 33.65010225,
+          "longitude": -117.84559094,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "10",
+          "latitude": 33.64822441,
+          "longitude": -117.84365205,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "11",
+          "latitude": 33.64346134,
+          "longitude": -117.8434337,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "12",
+          "latitude": 33.64397989,
+          "longitude": -117.84346633,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "13",
+          "latitude": 33.64640263,
+          "longitude": -117.84050172,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "14",
+          "latitude": 33.64649153,
+          "longitude": -117.83743367,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "15",
+          "latitude": 33.64628116,
+          "longitude": -117.83740777,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "16",
+          "latitude": 33.64712368,
+          "longitude": -117.83906409,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "17",
+          "latitude": 33.64699239,
+          "longitude": -117.83942378,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "18",
+          "latitude": 33.64814746,
+          "longitude": -117.84786043,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "19",
+          "latitude": 33.64397676,
+          "longitude": -117.84175444,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "2",
+          "latitude": 33.65040342,
+          "longitude": -117.84496139,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "20",
+          "latitude": 33.64414576,
+          "longitude": -117.8419758,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "21",
+          "latitude": 33.64446559,
+          "longitude": -117.841602,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "3",
+          "latitude": 33.64998896,
+          "longitude": -117.84488621,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "4",
+          "latitude": 33.64995079,
+          "longitude": -117.84501711,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "5",
+          "latitude": 33.64431413,
+          "longitude": -117.84078155,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "6",
+          "latitude": 33.64354383,
+          "longitude": -117.84396563,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "7",
+          "latitude": 33.64568624,
+          "longitude": -117.84575639,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "8",
+          "latitude": 33.64839437,
+          "longitude": -117.84452293,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      },
+      {
+          "id": "9",
+          "latitude": 33.64872461,
+          "longitude": -117.84249951,
+          "name": "Restroom",
+          "poi_type": "Restroom"
+      }
+  ]}
