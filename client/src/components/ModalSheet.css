@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'SF-Pro';
+    src: url("../assets/SF-Pro.OTF") format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+.search-wrapper {
+    padding: 5px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #dee2e6;
+    display: flex;
+    justify-content: left;
+    margin: 10px 0px;
+    width: 80vw;
+    height: 4.5vh;
+}
+
+.search-icon {
+    padding-top: 3px;
+}
+
+.search-bar-btn {
+    background-color: #dee2e6;
+    padding: 3px 3px 3px 10px;
+    border-radius: 5px;
+    border-width: 0px;
+    padding-top: 5px;
+    width: 70vw;
+    border: none;
+    font-family: 'SF-Pro';
+    src: url("../assets/SF-Pro.OTF") format("opentype");
+    font-size: 16px;
+}
+
+.search-bar-btn:focus {
+    outline: none;
+}
+
+.modal-body {
+    text-align: center;
+    padding: 0px 20px;
+}
