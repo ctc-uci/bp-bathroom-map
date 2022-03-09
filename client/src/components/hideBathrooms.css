@@ -1,27 +1,41 @@
-@font-face{
-  font-family: 'SF-Pro';
-  src: url("../assets/SF-Pro.OTF") format("opentype");
-  font-style: normal;
-  font-weight: normal;
+@font-face {
+    font-family: 'SF-Pro';
+    src: url("../assets/SF-Pro.OTF") format("opentype");
+    font-style: normal;
+    font-weight: normal;
 }
 
-.hide-bathrooms-button{
-  background-color: #007BFF;
-  border-radius: 4.8px;
-  text-align: center;
-  width: 75vw;
-  height: 5vh;
-  border-width: 0px;
+.hide-bathrooms-button {
+    /* background-color: #007BFF;
+    border-radius: 4.8px;
+    text-align: center;
+    width: 75vw;
+    height: 5vh;
+    border-width: 0px; */
+    position: fixed;
+    right: 10px;
+    bottom: 280px;
+    width: 50px;
+    height: 50px;
+    background: #FFFFFF;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 4.8px;
+    border: none;
 }
 
-.hide-bathrooms-button:hover{
-  cursor: pointer;
+.hide-bathrooms-button:hover {
+    cursor: pointer;
 }
 
-.hide-bathrooms-button-text{
-  color: white;
-  font-family: 'SF-Pro';
-  font-style: normal;
-  font-weight:lighter;
-  font-size: 100%;
+.hide-bathrooms-button-text {
+    color: white;
+    font-family: 'SF-Pro';
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 100%;
+}
+
+.toilet-icon {
+    width: 25px;
+    height: 25px;
 }

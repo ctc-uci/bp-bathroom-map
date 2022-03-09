@@ -36,11 +36,12 @@ function App() {
   const [lat, setLat] = useState(33.64592727868923)
   const [lng, setLng] = useState(-117.84273979898299)
   const [destination, setDestination] = useState(null);
+  const [closestBathroom, setClosestBathroom] = useState(null);
   const [directions, setDirections] = useState(null);
   const [listOfBathrooms, setListOfBathrooms] = useState([])
   const [savedListOfBathrooms, setSavedListOfBathrooms] = useState([])
   const [bathroomsHidden, setBathroomsHidden] = useState(false)
-  const [buildingsHidden, setBuildingsHidden] = useState(true)
+  const [buildingsHidden, setBuildingsHidden] = useState(false)
 
 
   const [mapStyle, setMapStyle] = useState([
@@ -72,6 +73,7 @@ function App() {
       //console.log(lat,lng)
     })
     Axios.get("http://localhost:3001/bathrooms").then((response) => {
+      console.log(response);
       setListOfBathrooms(response.data)
     })
   },[])
@@ -81,6 +83,7 @@ function App() {
     console.log('clicked');
     let closest = findClosestMarker(lat, lng, listOfBathrooms);
     console.log(closest);
+    setClosestBathroom(closest);
 
     DirectionsService.route({
       origin: new window.google.maps.LatLng(lat, lng),
@@ -125,7 +128,7 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
 
   const hideBuildingNames = () => {
     console.log("hi")
-    if(buildingsHidden == false){
+    if(buildingsHidden == true){
       setMapStyle ([
         {
             featureType: "poi",
@@ -147,10 +150,10 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
         },
 
     ])
-    setBuildingsHidden(true)
+    setBuildingsHidden(false)
 
     }
-    else if(buildingsHidden == true){
+    else if(buildingsHidden == false){
       setMapStyle ([
         {
             featureType: "poi",
@@ -171,7 +174,7 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
             ],
         },
     ])
-    setBuildingsHidden(false)
+    setBuildingsHidden(true)
     }
   }
 
@@ -181,15 +184,16 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
   to store this in a temporary variables so that we don't have to communicate to the backend again.
   */
   const hideBathrooms = () => {
-    let closest = findClosestMarker(lat, lng, listOfBathrooms)
+    // let closest = findClosestMarker(lat, lng, listOfBathrooms)
+    let closest = closestBathroom ? [closestBathroom] : []
     if(bathroomsHidden == true){
       setListOfBathrooms(savedListOfBathrooms)
-      setSavedListOfBathrooms([closest])
+      setSavedListOfBathrooms(closest)
       setBathroomsHidden(false)
     }
     else{
       setSavedListOfBathrooms(listOfBathrooms)
-      setListOfBathrooms([closest])
+      setListOfBathrooms(closest)
       setBathroomsHidden(true)
     }
   }
@@ -224,8 +228,8 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
         <DirectionsRenderer directions={directions}/>
       </GoogleMap>
       <ClosestBathroomButton clickHandler={findDirections}></ClosestBathroomButton>
-      <HideBuildingsButton clickHandler={hideBuildingNames}></HideBuildingsButton>
-      <HideBathroomsButton clickHandler={hideBathrooms} ></HideBathroomsButton>
+      <HideBuildingsButton clickHandler={hideBuildingNames} hidden={buildingsHidden}></HideBuildingsButton>
+      <HideBathroomsButton clickHandler={hideBathrooms} hidden={bathroomsHidden}></HideBathroomsButton>
 
     </div>
   );
