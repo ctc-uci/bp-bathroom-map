@@ -20,6 +20,7 @@ import anteaterMarker from './assets/anteater_marker.png';
 import findClosestMarker from './functions/findClosestMarker';
 import HideBuildingsButton from './components/HideBuildingsButton';
 import HideBathroomsButton from './components/HideBathrooms';
+import ModalSheet from './components/ModalSheet';
 //import hideBuildingNames from "./functions/hideBuildingNames";
 
 /*
@@ -230,6 +231,8 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
       <ClosestBathroomButton clickHandler={findDirections}></ClosestBathroomButton>
       <HideBuildingsButton clickHandler={hideBuildingNames} hidden={buildingsHidden}></HideBuildingsButton>
       <HideBathroomsButton clickHandler={hideBathrooms} hidden={bathroomsHidden}></HideBathroomsButton>
+      <ModalSheet />
+
 
     </div>
   );
