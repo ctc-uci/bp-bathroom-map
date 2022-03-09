@@ -1,16 +1,26 @@
+/*global google*/
+
 import React from 'react';
-import './App.css';
+import { compose, withProps, lifecycle } from 'recompose';
 import {
   GoogleMap,
+  withGoogleMap,
   useLoadScript,
   Marker,
   InfoWindow,
   DirectionsRenderer,
 } from "@react-google-maps/api"
-import ClosestBathroomButton from './components/ClosestBathroomButton';
 import { useState, useEffect } from 'react'
-import restrooms from "./assets/restrooms.json"
-import axios from "axios"
+import Axios from "axios"
+
+import './App.css';
+import ClosestBathroomButton from './components/ClosestBathroomButton';
+import RestroomMarker from './components/RestroomMarker';
+import anteaterMarker from './assets/anteater_marker.png';
+import findClosestMarker from './functions/findClosestMarker';
+import HideBuildingsButton from './components/HideBuildingsButton';
+import HideBathroomsButton from './components/HideBathrooms';
+//import hideBuildingNames from "./functions/hideBuildingNames";
 
 /*
 
@@ -20,26 +30,81 @@ rely on it to give walking directions yet.
 
 */
 
-
 function App() {
+  // load markers from backend
+  var DirectionsService;
+  const [lat, setLat] = useState(33.64592727868923)
+  const [lng, setLng] = useState(-117.84273979898299)
+  const [destination, setDestination] = useState(null);
+  const [directions, setDirections] = useState(null);
+  const [listOfBathrooms, setListOfBathrooms] = useState([])
+  const [savedListOfBathrooms, setSavedListOfBathrooms] = useState([])
+  const [bathroomsHidden, setBathroomsHidden] = useState(false)
+  const [buildingsHidden, setBuildingsHidden] = useState(true)
+
+
+  const [mapStyle, setMapStyle] = useState([
+    {
+        featureType: "poi",
+        elementType: "geometry",
+        stylers: [
+            {
+                color: "#eeeeee",
+            },
+        ],
+    },
+    {
+        featureType: "poi",
+        elementType: "labels",
+        stylers: [
+            {
+                visibility: "on",
+            },
+        ],
+    },
+])
+
   // start the application by centering the map on the user's location
   useEffect(() => {
     navigator.geolocation.watchPosition((position) => {
       setLat(position.coords.latitude)
       setLng(position.coords.longitude)
-      console.log(lat,lng)
+      //console.log(lat,lng)
     })
-  })
+    Axios.get("http://localhost:3001/bathrooms").then((response) => {
+      setListOfBathrooms(response.data)
+    })
+  },[])
 
-  // load markers from backend
-  const [lat, setLat] = useState(33.64592727868923)
-  const [lng, setLng] = useState(-117.84273979898299)
 
-  // set dimensions of map
+  const findDirections = () => {
+    console.log('clicked');
+    let closest = findClosestMarker(lat, lng, listOfBathrooms);
+    console.log(closest);
+
+    DirectionsService.route({
+      origin: new window.google.maps.LatLng(lat, lng),
+      destination: new window.google.maps.LatLng(closest.latitude, closest.longitude),
+      travelMode: window.google.maps.TravelMode.WALKING,
+    }, (result, status) => {
+      console.log(result);
+      if (status === window.google.maps.DirectionsStatus.OK) {
+        setDirections(result);
+        // get distance
+        // get walking time
+      } else {
+        console.error(`error fetching directions ${result}`);
+      }
+    })
+  }
+
+
   const mapContainerStyle = {
     width: "100vw",
     height: "90vh"
   }
+
+  // set dimensions of map
 
   const {isLoaded, loadError} = useLoadScript({
     googleMapsApiKey : process.env.REACT_APP_MAPS_API_KEY,
@@ -49,7 +114,88 @@ function App() {
 
   if(!isLoaded) return "Loading maps"
 
+  DirectionsService = new window.google.maps.DirectionsService();
+
+/*
+this function hides the building names by editing the configuration of our map.
+if the names are already hidden, we'll show them. otherwise, we'll hide them.
+
+
+*/
+
+  const hideBuildingNames = () => {
+    console.log("hi")
+    if(buildingsHidden == false){
+      setMapStyle ([
+        {
+            featureType: "poi",
+            elementType: "geometry",
+            stylers: [
+                {
+                    color: "#eeeeee",
+                },
+            ],
+        },
+        {
+            featureType: "poi",
+            elementType: "labels",
+            stylers: [
+                {
+                    visibility: "on",
+                },
+            ],
+        },
+
+    ])
+    setBuildingsHidden(true)
+
+    }
+    else if(buildingsHidden == true){
+      setMapStyle ([
+        {
+            featureType: "poi",
+            elementType: "geometry",
+            stylers: [
+                {
+                    color: "#eeeeee",
+                },
+            ],
+        },
+        {
+            featureType: "poi",
+            elementType: "labels",
+            stylers: [
+                {
+                    visibility: "off",
+                },
+            ],
+        },
+    ])
+    setBuildingsHidden(false)
+    }
+  }
+
   /*
+  this function hides the bathroom markers in the same manner that we hid the building names
+  in the previous function. To hide them, we set the list of bathrooms to only the closest bathrooms. we had
+  to store this in a temporary variables so that we don't have to communicate to the backend again.
+  */
+  const hideBathrooms = () => {
+    let closest = findClosestMarker(lat, lng, listOfBathrooms)
+    if(bathroomsHidden == true){
+      setListOfBathrooms(savedListOfBathrooms)
+      setSavedListOfBathrooms([closest])
+      setBathroomsHidden(false)
+    }
+    else{
+      setSavedListOfBathrooms(listOfBathrooms)
+      setListOfBathrooms([closest])
+      setBathroomsHidden(true)
+    }
+  }
+
+
+/*
 
   kind of a lot to unpack here, but the <GoogleMap> tag renders
   the map that we created with the specifications we added.
@@ -60,15 +206,27 @@ function App() {
 
   return (
     <div class="App">
-      <GoogleMap mapContainerStyle={mapContainerStyle} zoom = {16} center = {{lat:lat, lng:lng}}>
-        {restrooms.restrooms.map((item)=>(
-          <Marker
-            key={item.id}
+      <GoogleMap className="mapContainer" mapContainerStyle={mapContainerStyle} style={{width: "100vw", height: "90vh"}} zoom = {16} center = {{lat:lat, lng:lng}} options={{
+            styles: mapStyle,
+        }}>
+        {listOfBathrooms.map((item)=>(
+          <RestroomMarker
+            key={item._id}
             position={{lat:item.latitude, lng:item.longitude}}
+            data={item}
           />
         ))}
+        {
+          lat && lng &&
+          <Marker position={{lat: lat, lng: lng}} icon={anteaterMarker}/>
+        }
+
+        <DirectionsRenderer directions={directions}/>
       </GoogleMap>
-      <ClosestBathroomButton></ClosestBathroomButton>
+      <ClosestBathroomButton clickHandler={findDirections}></ClosestBathroomButton>
+      <HideBuildingsButton clickHandler={hideBuildingNames}></HideBuildingsButton>
+      <HideBathroomsButton clickHandler={hideBathrooms} ></HideBathroomsButton>
+
     </div>
   );
 }
