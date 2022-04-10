@@ -46,7 +46,7 @@ app.use('/bathrooms', bathroomRoute);
 // localhost:3001/bathrooms
 
 app.use('/review', reviewRoute);
-=======
+
 // localhost:3001/review?id=62081a3071799594b34a3c42&rate=4&review=not+clean
 
 // Run the server
@@ -55,6 +55,7 @@ app.listen(PORT, () => {
 });
 
 //////////////////////////////// SKELETON //////////////////////////////////
+/*
 - bathroom table structure
     - _id : string
     - name : string
