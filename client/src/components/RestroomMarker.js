@@ -43,7 +43,7 @@ const RestroomMarker = (props) => {
     <div>
 
       <Marker
-            key={props.key}
+            // key={props.key}
             position={props.position}
             onClick={toggleShowInfo}
           />

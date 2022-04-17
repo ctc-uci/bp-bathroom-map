@@ -5,7 +5,7 @@ import toiletIconBlack from '../assets/toilet_icon_black.svg';
 
 const HideBathroomsButton = (props) => {
   return (
-    <button class="hide-bathrooms-button hide-bathrooms-button-text" onClick={props.clickHandler} >
+    <button className="hide-bathrooms-button hide-bathrooms-button-text" onClick={props.clickHandler} >
       {
         props.hidden ?
         <img src={toiletIconBlack} className="toilet-icon"/>
