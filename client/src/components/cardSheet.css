@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'SF-Pro';
+    src: url("../assets/SF-Pro.OTF") format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+.sheet {
+    padding: 10px 20px;
+}
+
+.name{
+    font-size: larger;
+    font-weight: 500;
+}
+
+.bathroom-img {
+    max-height: 200px;
+    max-width: 150px;
+    border-radius: 5px;
+}
+
+.subtitle-text {
+    color: #868E96;
+}
+
+.row-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.find-bathroom-btn {
+    background-color: #007BFF;
+    border-radius: 4.8px;
+    text-align: center;
+    width: 75vw;
+    height: 5vh;
+    border-width: 0px;
+    margin-top: 10px;
+    padding: 5px 0px;
+}
+
+.find-bathroom-btn:hover {
+    cursor: pointer;
+}
+
+.find-bathroom-btn-text {
+    color: white;
+    font-family: 'SF-Pro';
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 100%;
+}

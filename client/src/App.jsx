@@ -219,6 +219,7 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
             key={item._id}
             position={{lat:item.latitude, lng:item.longitude}}
             data={item}
+            getDirections={findDirections}
           />
         ))}
         {
