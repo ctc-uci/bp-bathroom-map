@@ -1,0 +1,55 @@
+.search-card-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    /* justify-content: left; */
+    position: relative;
+    border-bottom: 1px solid #DEE2E6;
+    padding: 10px 0;
+}
+
+.picture > img {
+    width: 100px;
+    height: 100px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 4;
+    font-size: 20px;
+    justify-content: space-around;
+}
+
+.name {
+    font-size: 40px;
+    padding-left: 5vw;
+    align-self: flex-start;
+}
+
+.availability {
+    color: green;
+}
+
+.details {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.info {
+    padding-left: 5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.address {
+    padding-left: 5vw;
+}
+
+.rating {
+    padding-right: 5vw;
+    color: #FFC107;
+}

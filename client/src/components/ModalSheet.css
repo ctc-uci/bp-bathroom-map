@@ -51,15 +51,19 @@
 }
 
 .cancel-button {
-    /* margin-left: 5vw; */
+    padding: 0 20px;
     max-height: 20px;
     border: none;
     font-family: 'SF-Pro';
+    background-color: White;
+    font-size: 30px;
+    color: #007BFF;
 }
 
 .button-wrapper {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    justify-content: space-evenly;
+    justify-content: center;
+    padding-bottom: 10px;
 }
