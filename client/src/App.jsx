@@ -231,7 +231,7 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
       <ClosestBathroomButton clickHandler={findDirections}></ClosestBathroomButton>
       <HideBuildingsButton clickHandler={hideBuildingNames} hidden={buildingsHidden}></HideBuildingsButton>
       <HideBathroomsButton clickHandler={hideBathrooms} hidden={bathroomsHidden}></HideBathroomsButton>
-      {/* <ModalSheet /> */}
+      <ModalSheet />
 
 
     </div>

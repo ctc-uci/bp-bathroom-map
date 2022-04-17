@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './ModalSheet.css';
 import Sheet from 'react-modal-sheet';
 
-const ModalSheet = () => {
+const ModalSheet = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [searchValue, setSearchValue] = useState();
 
