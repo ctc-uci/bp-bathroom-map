@@ -5,12 +5,12 @@ import Axios from 'axios';
 import Fuse from 'fuse.js';
 import SearchCard from './SearchCard.js';
 
-const ModalSheet = () => {
+const ModalSheet = ({ lat, lng}) => {
   const [isOpen, setOpen] = useState(false);
 
   const options= { distance:20, findAllMatches:true, limit:10 };
   const [fuse, setFuse] = useState();
-  const [bathroomResults, setBathroomResults]=useState([]);
+  const [bathroomResults, setBathroomResults] = useState([]);
   const [bathroomsList, setBathroomsList] = useState([]);
   const [bathroomsJSON, setBathroomsJSON] = useState({});
 
@@ -25,27 +25,59 @@ const ModalSheet = () => {
   useEffect(async () => {
     await getBathroomNames();
   }, [])
-  
+
+  const rad = (x) => {
+    return x * Math.PI / 180;
+  }
+
+  const R = 6371; // radius of earth in km
+  const calcDist = (location) => {
+    const mlat = location.lat;
+    const mlng = location.lng;
+    var dLat = rad(mlat - lat);
+    var dLong = rad(mlng - lng);
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(rad(lat)) * Math.cos(rad(lat)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    return R * c;
+  }
+
+  const calcRating = (breviews) => {
+    const length = breviews?.length;
+    if (!length) {
+      return NaN;
+    }
+    const reviews = breviews.map((e) => e.rating);
+    const avg_rating = (length===0 ? NaN : reviews.reduce(reducer) / length).toFixed(1);
+    return avg_rating
+  }
+
+
   const changeHandler = (e) => {
     const val = e.target.value;
     event.preventDefault(); //prevent default behavior
-    const similarBathrooms= fuse.search(val);
+    let similarBathrooms= fuse.search(val);
+    similarBathrooms.sort((a,b) => (
+      calcDist(bathroomsList[a]) - calcDist(bathroomsList[b])
+      +  calcRating(bathroomsList[b].reviews) - calcRating(bathroomsList[a].reviews)));
+    // console.log(similarBathrooms);
     setBathroomResults(similarBathrooms);
   }
 
   const createCard = (idx) => {
     const bathroom = bathroomsJSON.filter((data) => data.name===bathroomsList[idx])[0]
-    
+
     const reducer = (acc, curr) => acc + curr;
     const length = bathroom.reviews.length;
     const reviews = bathroom.reviews.map((e) => e.rating);
     const avg_rating = (length===0 ? NaN : reviews.reduce(reducer) / length).toFixed(1);
-    
+    console.log(avg_rating);
+
     return (
       <SearchCard
         key={bathroom._id}
         name={bathroom.name}
-        location={bathroom.longitude.toFixed(3) + ', ' + bathroom.latitude.toFixed(3)}
         rating = {avg_rating}
         img={bathroom.img}
       />
@@ -77,7 +109,7 @@ const ModalSheet = () => {
                     autoFocus
                   ></input>
                 </div>
-                
+
                 <div className="button-wrapper">
                   <button className="cancel-button" onClick={() => setOpen(false)}>Cancel</button>
                 </div>

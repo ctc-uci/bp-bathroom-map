@@ -3,7 +3,10 @@ import React from 'react';
 import toiletIcon from '../assets/toilet_icon.svg';
 import star from '../assets/star.svg';
 
-const SearchCard = ({ name, location, rating, img }) => {
+const SearchCard = ({ name, rating, img }) => {
+    if (isNaN(rating)) {
+        rating = "No ratings";
+    }
     return (
         <div className="search-card-wrapper">
             <div className="picture">
@@ -14,7 +17,6 @@ const SearchCard = ({ name, location, rating, img }) => {
                 <div className="details">
                     <div className="info">
                         <div className="availability">Open</div>
-                        <div className="address">{location}</div>
                     </div>
                     <div className="rating">{rating} <img src={star} /></div>
                 </div>
