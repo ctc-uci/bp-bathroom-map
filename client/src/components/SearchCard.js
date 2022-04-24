@@ -1,6 +1,6 @@
 import './SearchCard.css';
 import React from 'react';
-import toiletIcon from '../assets/toilet_circle.svg';
+import toiletIcon from '../assets/toilet_icon.svg';
 import star from '../assets/star.svg';
 
 const SearchCard = ({ name, location, rating, img }) => {
