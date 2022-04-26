@@ -59,8 +59,8 @@ const ModalSheet = ({ lat, lng}) => {
     event.preventDefault(); //prevent default behavior
     let similarBathrooms= fuse.search(val);
     similarBathrooms.sort((a,b) => (
-      calcDist(bathroomsList[a]) - calcDist(bathroomsList[b])
-      +  calcRating(bathroomsList[b].reviews) - calcRating(bathroomsList[a].reviews)));
+      calcDist(bathroomsList[a]) - calcDist(bathroomsList[b]) ///closest distances
+      +  calcRating(bathroomsList[b].reviews) - calcRating(bathroomsList[a].reviews))); //highest reviews
     // console.log(similarBathrooms);
     setBathroomResults(similarBathrooms);
   }
