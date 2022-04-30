@@ -26,8 +26,10 @@ const CardSheet = (props) => {
             <Sheet.Header />
             <Sheet.Content>
               <div className="sheet">
+
                 <div className='name'>
                   <h1>{props.data.name}</h1>
+                    <button className="close-sheet-btn" onClick = {()=>setOpen(false)}>X</button>
                 </div>
                 <ReactStars size={30}
                   value={avgValue}
@@ -36,17 +38,30 @@ const CardSheet = (props) => {
                 <div className="row-center">
                   <button className="find-bathroom-btn find-bathroom-btn-text" onClick={props.getDirections}>Go</button>
                 </div>
+
+
+
                 <h4 className="subtitle-text">Images</h4>
-                <img 
-                src={props.data.img}
-                className="bathroom-img"
-                />
+                <div class="sideScroll">
+                  <img
+                  src={props.data.img}
+                  className="bathroom-img"
+                  />
+                  <img
+                  src={props.data.img}
+                  className="bathroom-img"
+                  />
+                  <img
+                  src={props.data.img}
+                  className="bathroom-img"
+                  />
+                </div>
                 <h4 className="subtitle-text">Available Bathrooms</h4>
                 {/* Icons for male, female, and gender neutral */}
                 <img
                 src={"./assets/woman.png"}
                 />
-                
+
                 <div></div>
                 <h4 className="subtitle-text">Reviews</h4>
 
@@ -55,7 +70,7 @@ const CardSheet = (props) => {
                   {/*console.log(reviews)*/}
                   {reviews}
                 </div>
-              
+
               </div>
               {/*TODO: MULTIPLE IMAGES,REVIEWS,MAKE IT LOOK BETTER */}
             </Sheet.Content>
