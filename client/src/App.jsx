@@ -213,6 +213,7 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
     <div class="App">
       <GoogleMap className="mapContainer" mapContainerStyle={mapContainerStyle} style={{width: "100vw", height: "90vh"}} zoom = {16} center = {{lat:lat, lng:lng}} options={{
             styles: mapStyle,
+            streetViewControl: false,
         }}>
         {listOfBathrooms.map((item)=>(
           <RestroomMarker
