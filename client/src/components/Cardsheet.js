@@ -3,6 +3,9 @@ import Sheet from 'react-modal-sheet';
 import ReactStars from "react-rating-stars-component";
 import exit_button from "../assets/exit_button.png"
 import Review from './Review.js';
+import woman from '../assets/woman.png'
+import man from '../assets/man.png'
+import trans from '../assets/transgender.png'
 import './cardSheet.css';
 
 
@@ -59,9 +62,9 @@ const CardSheet = (props) => {
                 </div>
                 <h4 className="subtitle-text">Available Bathrooms</h4>
                 {/* Icons for male, female, and gender neutral */}
-                <img
-                src={"./assets/woman.png"}
-                />
+                <img src={woman}/>
+                <img src={man}/>
+                <img src={trans}/>
 
                 <div></div>
                 <h4 className="subtitle-text">Reviews</h4>
