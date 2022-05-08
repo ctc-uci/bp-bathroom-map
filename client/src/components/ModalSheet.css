@@ -5,15 +5,21 @@
     font-weight: normal;
 }
 
+.search{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    width: 80vw;
+}
+
 .search-wrapper {
-    padding: 5px 20px;
+    /* padding: 5px 20px;  */
+    padding-left: 3%;
     border-radius: 5px;
     border: none;
     background-color: #dee2e6;
     display: flex;
     justify-content: left;
-    margin: 10px 0px;
-    width: 80vw;
+    /* margin: 10px 0px; */
     height: 4.5vh;
 }
 
@@ -27,7 +33,7 @@
     border-radius: 5px;
     border-width: 0px;
     padding-top: 5px;
-    width: 70vw;
+    /* width: 70vw; */
     border: none;
     font-family: 'SF-Pro';
     src: url("../assets/SF-Pro.OTF") format("opentype");
@@ -41,4 +47,13 @@
 .modal-body {
     text-align: center;
     padding: 0px 20px;
+}
+
+.search-image{
+    width: 2vh;
+    height: 2vh;
+    top:50%;
+    object-fit: contain;
+    align-self: center;
+  
 }

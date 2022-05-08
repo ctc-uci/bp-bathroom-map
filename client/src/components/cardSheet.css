@@ -11,9 +11,14 @@
 
 .name{
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
-    font-size: larger;
-    font-weight: 500;
+    height: 12vw;
+    /* font-size: large; */
+    /* font-weight: 500; */
+    /* top: 50%; */
+
 }
 
 .bathroom-img {
@@ -67,12 +72,19 @@
 }
 
 .close-sheet-btn{
-  justify-content: right;
-
   margin-left: auto;
-  margin-right:0;
+  top: 50%;
+  /*margin-right:0;
   margin-bottom: 0;
   border: none;
-  border-radius: 10%;
+  border-radius: 10%; */
+  width: 5vh;
+  height: 5vh;
+  justify-content: center;
+  object-fit: contain;
+
+
 }
+
+
 

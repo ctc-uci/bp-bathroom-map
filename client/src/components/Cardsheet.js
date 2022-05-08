@@ -1,7 +1,7 @@
 import React from 'react';
 import Sheet from 'react-modal-sheet';
 import ReactStars from "react-rating-stars-component";
-
+import exit_button from "../assets/exit_button.png"
 import Review from './Review.js';
 import './cardSheet.css';
 
@@ -29,7 +29,8 @@ const CardSheet = (props) => {
 
                 <div className='name'>
                   <h1>{props.data.name}</h1>
-                    <button className="close-sheet-btn" onClick = {()=>setOpen(false)}>X</button>
+                    {/* <button className="close-sheet-btn" onClick = {()=>setOpen(false)}>X</button> */}
+                    <img className="close-sheet-btn" src={exit_button} onClick = {()=>setOpen(false)}></img>
                 </div>
                 <ReactStars size={30}
                   value={avgValue}
