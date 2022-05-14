@@ -7,6 +7,7 @@ import {
 import CardSheet from './Cardsheet';
 
 const RestroomMarker = (props) => {
+  console.log(props)
   const [showInfo, setShowInfo] = useState(false);
 
   const toggleShowInfo = () => {
@@ -41,6 +42,10 @@ const RestroomMarker = (props) => {
     "</div>" +
     "</div>";
 
+    const sayHi = () => {
+      console.log("jk")
+    }
+
   return (
     <div>
 
@@ -49,12 +54,12 @@ const RestroomMarker = (props) => {
             position={props.position}
             onClick={toggleShowInfo}
           />
-      
+
       {
         showInfo && <CardSheet data={props.data} getDirections={() => {
           props.getDirections();
           setShowInfo(false);
-        }}></CardSheet>
+        }} getSpecificDirections = {() => {props.findSpecificRestroom();}}></CardSheet>
       //   showInfo && <InfoWindow position={{lat: props.position.lat + 0.0002, lng: props.position.lng}} onCloseClick={toggleShowInfo}>
       //     <CardSheet data={props.data} ></CardSheet>
       //     {/* <div className="marker-info">
