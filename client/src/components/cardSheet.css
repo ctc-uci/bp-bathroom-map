@@ -9,7 +9,7 @@
     padding: 10px 20px;
 }
 
-.name{
+.name {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,11 +19,11 @@
     /* font-size: large; */
     /* font-weight: 500; */
     /* top: 50%; */
-
 }
 
-.nameSpace{
-  margin-bottom: 0%;
+.nameSpace {
+    margin-bottom: 0%;
+    text-align: center;
 }
 
 .bathroom-img {
@@ -39,6 +39,22 @@
 .row-center {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.row-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+
+.row-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .find-bathroom-btn {
@@ -50,6 +66,7 @@
     border-width: 0px;
     margin-top: 10px;
     padding: 5px 0px;
+    color: white;
 }
 
 .find-bathroom-btn:hover {
@@ -64,31 +81,35 @@
     font-size: 100%;
 }
 
-.sideScroll{
-  overflow: auto;
-  white-space: nowrap;
-  width: 100vw;
+.sideScroll {
+    overflow: auto;
+    white-space: nowrap;
+    width: 100vw;
 }
 
-.sideScroll img{
-  display: inline-block;
-  padding-right: 1%;
+.sideScroll img {
+    display: inline-block;
+    padding-right: 1%;
 }
 
-.close-sheet-btn{
-  margin-left: auto;
-  top: 50%;
-  /*margin-right:0;
+.close-sheet-btn {
+    margin-left: auto;
+    top: 50%;
+    /*margin-right:0;
   margin-bottom: 0;
   border: none;
   border-radius: 10%; */
-  width: 5vh;
-  height: 5vh;
-  justify-content: center;
-  object-fit: contain;
-
-
+    width: 5vh;
+    height: 5vh;
+    justify-content: center;
+    object-fit: contain;
 }
 
+.num-ratings {
+    padding-left: 5px;
+}
 
-
+.add-review-btn {
+    padding: 3px;
+    color: #007BFF;
+}
