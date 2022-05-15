@@ -15,19 +15,23 @@ const AddReview = (props) => {
   const submitReview = () => {
     let data = {};
     const text = document.getElementById('review-text').value;
-    data.rating = stars;
+    data.rate = stars;
     data.review = text;
-    data.bathroomID = props.id;
+    data.id = props.id;
     console.log(stars);
     console.log(text);
     console.log(props.id);
 
-    // TODO: make request to insert in backend
-    // axios.post('http://localhost:3001/reviews', data)
-    // .then(res => {
-
-    // })
-    // .catch(err => console.log(err));
+    // make request to insert in backend
+    axios.post('http://localhost:3001/review', {}, {
+      params: data
+    })
+    .then(res => {
+      console.log(res);
+      props.goBack(false);
+      props.reload();
+    })
+    .catch(err => console.log(err));
   }
 
   return (

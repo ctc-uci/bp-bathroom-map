@@ -13,7 +13,6 @@ const CardSheet = (props) => {
   const [isOpen, setOpen] = React.useState(true);
   const [reviewOpen, setReviewOpen] = React.useState(false);
   console.log(props);
-  // const reviews = props.data.reviews.map((reviewObj) => <li>{reviewObj.rating}<br></br>{reviewObj.review}</li>);
   const reviews = props.data.reviews.map((reviewObj) => <Review rating={reviewObj.rating} text={reviewObj.review}/>);
   let sum = 0;
   props.data.reviews.forEach((r) => {
@@ -35,7 +34,12 @@ const CardSheet = (props) => {
             <Sheet.Header />
             <Sheet.Content>
               {reviewOpen ?
-                <AddReview name={props.data.name} id={props.data._id} goBack={toggleAddReview}/>
+                <AddReview
+                  name={props.data.name}
+                  id={props.data._id}
+                  reload={props.reload}
+                  goBack={toggleAddReview}
+                />
               :
               <div className="sheet" id="sheet">
 
