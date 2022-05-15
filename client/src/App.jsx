@@ -252,7 +252,7 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
             position={{lat:item.latitude, lng:item.longitude}}
             data={item}
             getDirections={findDirections}
-            getSpecificDirections = {findSpecificRestroom}
+            getSpecificDirections={(bathroomName) => findSpecificRestroom(bathroomName)}
           />
         ))}
         {

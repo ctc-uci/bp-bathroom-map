@@ -8,7 +8,6 @@ import man from '../assets/man.png'
 import trans from '../assets/transgender.png'
 import './cardSheet.css';
 
-
 const CardSheet = (props) => {
   const [isOpen, setOpen] = React.useState(true);
   console.log(props);
@@ -40,7 +39,15 @@ const CardSheet = (props) => {
                   edit={false}
                 />
                 <div className="row-center">
-                  <button className="find-bathroom-btn find-bathroom-btn-text" onClick={() => props.getSpecificDirections(props.data)}>Go</button>
+                  <button
+                    className="find-bathroom-btn find-bathroom-btn-text"
+                    onClick={() => {
+                      props.getSpecificDirections(props.data.name)
+                      setOpen(false)
+                    }}
+                  >
+                    Go
+                  </button>
                 </div>
 
                 <h4 className="subtitle-text">Images</h4>
