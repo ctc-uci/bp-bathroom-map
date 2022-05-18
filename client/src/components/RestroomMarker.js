@@ -4,7 +4,10 @@ import {
   InfoWindow,
 } from "@react-google-maps/api"
 
+import CardSheet from './Cardsheet';
+
 const RestroomMarker = (props) => {
+  console.log(props)
   const [showInfo, setShowInfo] = useState(false);
 
   const toggleShowInfo = () => {
@@ -39,6 +42,10 @@ const RestroomMarker = (props) => {
     "</div>" +
     "</div>";
 
+    const sayHi = () => {
+      console.log("jk")
+    }
+
   return (
     <div>
 
@@ -47,13 +54,24 @@ const RestroomMarker = (props) => {
             position={props.position}
             onClick={toggleShowInfo}
           />
-      {
-        showInfo && <InfoWindow position={{lat: props.position.lat + 0.0002, lng: props.position.lng}} onCloseClick={toggleShowInfo}>
-          <div className="marker-info">
-            <p>{props.data.name}</p>
-          </div>
 
-      </InfoWindow>
+      {
+        showInfo &&
+        <CardSheet
+          data={props.data}
+          getDirections={() => {
+            props.getDirections();
+            setShowInfo(false);
+          }}
+          getSpecificDirections={(bathroomName) => props.getSpecificDirections(bathroomName)}
+        />
+      //   showInfo && <InfoWindow position={{lat: props.position.lat + 0.0002, lng: props.position.lng}} onCloseClick={toggleShowInfo}>
+      //     <CardSheet data={props.data} ></CardSheet>
+      //     {/* <div className="marker-info">
+      //       <p>{props.data.name}</p>
+      //     </div> */}
+
+      // </InfoWindow>
       }
 
     </div>
