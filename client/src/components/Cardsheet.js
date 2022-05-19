@@ -8,10 +8,11 @@ import man from '../assets/man.png'
 import trans from '../assets/transgender.png'
 import './cardSheet.css';
 
-
 const CardSheet = (props) => {
   const [isOpen, setOpen] = React.useState(true);
-  // console.log(props.data.reviews)
+
+  console.log(props);
+
   // const reviews = props.data.reviews.map((reviewObj) => <li>{reviewObj.rating}<br></br>{reviewObj.review}</li>);
   const reviews = props.data.reviews.map((reviewObj) => <Review rating={reviewObj.rating} text={reviewObj.review}/>);
   console.log(props.data.imgs);
@@ -33,7 +34,7 @@ const CardSheet = (props) => {
               <div className="sheet">
 
                 <div className='name'>
-                  <h1>{props.data.name}</h1>
+                  <h1 className='nameSpace'>{props.data.name}</h1>
                     {/* <button className="close-sheet-btn" onClick = {()=>setOpen(false)}>X</button> */}
                     <img className="close-sheet-btn" src={exit_button} onClick = {()=>setOpen(false)}></img>
                 </div>
@@ -42,10 +43,16 @@ const CardSheet = (props) => {
                   edit={false}
                 />
                 <div className="row-center">
-                  <button className="find-bathroom-btn find-bathroom-btn-text" onClick={props.getDirections}>Go</button>
+                  <button
+                    className="find-bathroom-btn find-bathroom-btn-text"
+                    onClick={() => {
+                      props.getSpecificDirections(props.data.name)
+                      setOpen(false)
+                    }}
+                  >
+                    Go
+                  </button>
                 </div>
-
-
 
                 <h4 className="subtitle-text">Images</h4>
                 <div class="sideScroll">

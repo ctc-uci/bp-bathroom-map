@@ -14,11 +14,16 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    height: 12vw;
+    /* position: relative; */
+    /* height: 5vw; */
     /* font-size: large; */
     /* font-weight: 500; */
     /* top: 50%; */
 
+}
+
+.nameSpace{
+  margin-bottom: 0%;
 }
 
 .bathroom-img {
@@ -34,7 +39,6 @@
 .row-center {
     display: flex;
     flex-direction: row;
-
 }
 
 .find-bathroom-btn {
