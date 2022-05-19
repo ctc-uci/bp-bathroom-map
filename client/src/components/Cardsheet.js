@@ -11,9 +11,11 @@ import './cardSheet.css';
 
 const CardSheet = (props) => {
   const [isOpen, setOpen] = React.useState(true);
-  console.log(props.data.reviews)
+  // console.log(props.data.reviews)
   // const reviews = props.data.reviews.map((reviewObj) => <li>{reviewObj.rating}<br></br>{reviewObj.review}</li>);
   const reviews = props.data.reviews.map((reviewObj) => <Review rating={reviewObj.rating} text={reviewObj.review}/>);
+  console.log(props.data.imgs);
+  const imgs = props.data.imgs.map((img) => <img src={img} className="bathroom-img"/>);
   let sum = 0;
   props.data.reviews.forEach((r) => {
     sum += r.rating;
@@ -47,7 +49,7 @@ const CardSheet = (props) => {
 
                 <h4 className="subtitle-text">Images</h4>
                 <div class="sideScroll">
-                  <img
+                  {/* <img
                   src={props.data.img}
                   className="bathroom-img"
                   />
@@ -58,7 +60,8 @@ const CardSheet = (props) => {
                   <img
                   src={props.data.img}
                   className="bathroom-img"
-                  />
+                  /> */}
+                  {imgs}
                 </div>
                 <h4 className="subtitle-text">Available Bathrooms</h4>
                 {/* Icons for male, female, and gender neutral */}
