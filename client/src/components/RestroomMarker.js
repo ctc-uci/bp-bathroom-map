@@ -30,10 +30,17 @@ const RestroomMarker = (props) => {
           />
 
       {
-        showInfo && <CardSheet data={props.data} reload={props.reload} getDirections={() => {
-          props.getDirections();
-          setShowInfo(false);
-        }} getSpecificDirections = {() => {props.findSpecificRestroom();}}></CardSheet>
+
+        showInfo &&
+        <CardSheet
+          data={props.data}
+          getDirections={() => {
+            props.getDirections();
+            setShowInfo(false);
+          }}
+          getSpecificDirections={(bathroomName) => props.getSpecificDirections(bathroomName)}
+        />
+
       //   showInfo && <InfoWindow position={{lat: props.position.lat + 0.0002, lng: props.position.lng}} onCloseClick={toggleShowInfo}>
       //     <CardSheet data={props.data} ></CardSheet>
       //     {/* <div className="marker-info">

@@ -18,6 +18,7 @@ const bathroomSchema = new mongoose.Schema({
   longitude: Number,
   img: String,
   reviews:[reviewSchema],
+  imgs: [String],
 });
 
 module.exports = mongoose.model('Bathroom', bathroomSchema, 'bathrooms');

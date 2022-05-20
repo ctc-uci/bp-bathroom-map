@@ -7,13 +7,17 @@ import woman from '../assets/woman.png'
 import man from '../assets/man.png'
 import trans from '../assets/transgender.png'
 import './cardSheet.css';
+
 import AddReview from './AddReview.js';
 
 const CardSheet = (props) => {
   const [isOpen, setOpen] = React.useState(true);
   const [reviewOpen, setReviewOpen] = React.useState(false);
   console.log(props);
+  
   const reviews = props.data.reviews.map((reviewObj) => <Review rating={reviewObj.rating} text={reviewObj.review}/>);
+  console.log(props.data.imgs);
+  const imgs = props.data.imgs.map((img) => <img src={img} className="bathroom-img"/>);
   let sum = 0;
   props.data.reviews.forEach((r) => {
     sum += r.rating;
@@ -57,12 +61,20 @@ const CardSheet = (props) => {
                 <span className="num-ratings">({props.data.reviews.length})</span>
                 </div>
                 <div className="row-center">
-                  <button className="find-bathroom-btn find-bathroom-btn-text" onClick={() => props.getSpecificDirections(props.data)}>Go</button>
+                  <button
+                    className="find-bathroom-btn find-bathroom-btn-text"
+                    onClick={() => {
+                      props.getSpecificDirections(props.data.name)
+                      setOpen(false)
+                    }}
+                  >
+                    Go
+                  </button>
                 </div>
 
                 <h4 className="subtitle-text">Images</h4>
                 <div class="sideScroll">
-                  <img
+                  {/* <img
                   src={props.data.img}
                   className="bathroom-img"
                   />
@@ -73,7 +85,8 @@ const CardSheet = (props) => {
                   <img
                   src={props.data.img}
                   className="bathroom-img"
-                  />
+                  /> */}
+                  {imgs}
                 </div>
                 <h4 className="subtitle-text">Available Bathrooms</h4>
                 {/* Icons for male, female, and gender neutral */}
