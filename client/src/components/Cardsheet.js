@@ -13,21 +13,38 @@ import AddReview from './AddReview.js';
 const CardSheet = (props) => {
   const [isOpen, setOpen] = React.useState(true);
   const [reviewOpen, setReviewOpen] = React.useState(false);
+  const [avg, setAvg] = React.useState(0);
   console.log(props);
-  
+
   const reviews = props.data.reviews.map((reviewObj) => <Review rating={reviewObj.rating} text={reviewObj.review}/>);
   console.log(props.data.imgs);
   const imgs = props.data.imgs.map((img) => <img src={img} className="bathroom-img"/>);
-  let sum = 0;
-  props.data.reviews.forEach((r) => {
-    sum += r.rating;
-  })
-  let avgValue = sum * 1.0 / props.data.reviews.length;
-  console.log(avgValue)
+
 
   const toggleAddReview = (val) => {
     setReviewOpen(val);
   }
+
+  const computeAverage = (data) => {
+
+    let sum = 0;
+    data.reviews.forEach((r) => {
+      sum += r.rating;
+    })
+    let avgValue = sum * 1.0 / data.reviews.length;
+    console.log(avgValue)
+    setAvg(<ReactStars size={30}
+      value={avgValue}
+      edit={false}
+      isHalf={true}
+    />);
+  }
+
+
+  React.useEffect(() => {
+    computeAverage(props.data);
+  }, [])
+
 
   return (
     <div>
@@ -41,7 +58,8 @@ const CardSheet = (props) => {
                 <AddReview
                   name={props.data.name}
                   id={props.data._id}
-                  reload={props.reload}
+                  reload={() => {const newData = props.reload(); console.log('reloading'); computeAverage(props.data);}}
+                  // reAverage={computeAverage}
                   goBack={toggleAddReview}
                 />
               :
@@ -53,11 +71,12 @@ const CardSheet = (props) => {
                     <img className="close-sheet-btn" src={exit_button} onClick = {()=>setOpen(false)}></img>
                 </div>
                 <div className="row-start">
-                <ReactStars size={30}
-                  value={avgValue}
+                {/* <ReactStars size={30}
+                  value={avg}
                   edit={false}
                   isHalf={true}
-                />
+                /> */}
+                {avg}
                 <span className="num-ratings">({props.data.reviews.length})</span>
                 </div>
                 <div className="row-center">

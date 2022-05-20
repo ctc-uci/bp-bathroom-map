@@ -34,6 +34,7 @@ const RestroomMarker = (props) => {
         showInfo &&
         <CardSheet
           data={props.data}
+          reload={props.reload}
           getDirections={() => {
             props.getDirections();
             setShowInfo(false);

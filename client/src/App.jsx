@@ -66,19 +66,20 @@ function App() {
     },
 ])
 
-  const loadData = () => {
+  const loadData = async () => {
     navigator.geolocation.watchPosition((position) => {
       setLat(position.coords.latitude)
       setLng(position.coords.longitude)
       //console.log(lat,lng)
     })
-    Axios.get("http://localhost:3001/bathrooms").then((response) => {
+    await Axios.get("http://localhost:3001/bathrooms").then(async (response) => {
       console.log(response);
       setListOfBathrooms(response.data)
     })
 
     console.log("hi");
     console.log(listOfBathrooms);
+    return listOfBathrooms;
   }
 
   // start the application by centering the map on the user's location

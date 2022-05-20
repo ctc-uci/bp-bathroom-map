@@ -30,6 +30,8 @@ const AddReview = (props) => {
       console.log(res);
       props.goBack(false);
       props.reload();
+    }).then(res => {
+      props.reAverage();
     })
     .catch(err => console.log(err));
   }
