@@ -1,0 +1,61 @@
+@font-face {
+    font-family: 'SF-Pro';
+    src: url("../assets/SF-Pro.OTF") format("opentype");
+    font-style: normal;
+    font-weight: lighter;
+}
+
+.add-review-box {
+    padding: 20px;
+}
+
+.nameSpace {
+    margin: 0;
+    text-align: center;
+}
+
+.row-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.review-text {
+    border-radius: 10px;
+    font-family: 'SF-Pro';
+    padding: 10px;
+    font-size: 16px;
+    margin: 0 25px;
+}
+
+.post-btn {
+    background-color: #007BFF;
+    border-radius: 4.8px;
+    text-align: center;
+    width: 80vw;
+    max-width: 400px;
+    height: 5vh;
+    border-width: 0px;
+    margin-top: 10px;
+    padding: 5px 0px;
+    color: white;
+}
+
+.post-btn:hover {
+    cursor: pointer;
+}
+
+.post-btn-text {
+    color: white;
+    font-family: 'SF-Pro';
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 100%;
+}

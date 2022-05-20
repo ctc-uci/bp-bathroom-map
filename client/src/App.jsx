@@ -66,8 +66,7 @@ function App() {
     },
 ])
 
-  // start the application by centering the map on the user's location
-  useEffect(() => {
+  const loadData = () => {
     navigator.geolocation.watchPosition((position) => {
       setLat(position.coords.latitude)
       setLng(position.coords.longitude)
@@ -80,7 +79,10 @@ function App() {
 
     console.log("hi");
     console.log(listOfBathrooms);
-  },[])
+  }
+
+  // start the application by centering the map on the user's location
+  useEffect(loadData,[])
 
 
   const findDirections = () => {
@@ -252,6 +254,7 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
             position={{lat:item.latitude, lng:item.longitude}}
             data={item}
             getDirections={findDirections}
+            reload={loadData}
             getSpecificDirections={(bathroomName) => findSpecificRestroom(bathroomName)}
           />
         ))}
