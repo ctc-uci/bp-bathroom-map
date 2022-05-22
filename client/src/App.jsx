@@ -70,13 +70,11 @@ function App() {
       setLng(position.coords.longitude)
       //console.log(lat,lng)
     })
-<<<<<<< HEAD
     Axios.get('http://localhost:3001/bathrooms').then((response) => {
       // console.log(response);
       setListOfBathrooms(response.data)
     })
   },[]);
-=======
     await Axios.get("http://localhost:3001/bathrooms").then(async (response) => {
       console.log(response);
       setListOfBathrooms(response.data)
@@ -89,7 +87,6 @@ function App() {
 
   // start the application by centering the map on the user's location
   useEffect(loadData,[])
->>>>>>> main
 
 
   const findDirections = () => {
@@ -275,13 +272,8 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
       <ClosestBathroomButton clickHandler={findDirections}></ClosestBathroomButton>
       <HideBuildingsButton clickHandler={hideBuildingNames} hidden={buildingsHidden}></HideBuildingsButton>
       <HideBathroomsButton clickHandler={hideBathrooms} hidden={bathroomsHidden}></HideBathroomsButton>
-<<<<<<< HEAD
       <ModalSheet lat={lat} lon={lng} />
-=======
       <ModalSheet />
-
->>>>>>> main
-
     </div>
   );
 }
