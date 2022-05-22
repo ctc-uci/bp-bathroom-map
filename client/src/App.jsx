@@ -64,18 +64,32 @@ function App() {
     },
   ]);
 
-  // start the application by centering the map on the user's location
-  useEffect(() => {
+  const loadData = async () => {
     navigator.geolocation.watchPosition((position) => {
       setLat(position.coords.latitude)
       setLng(position.coords.longitude)
       //console.log(lat,lng)
     })
+<<<<<<< HEAD
     Axios.get('http://localhost:3001/bathrooms').then((response) => {
       // console.log(response);
       setListOfBathrooms(response.data)
     })
   },[]);
+=======
+    await Axios.get("http://localhost:3001/bathrooms").then(async (response) => {
+      console.log(response);
+      setListOfBathrooms(response.data)
+    })
+
+    console.log("hi");
+    console.log(listOfBathrooms);
+    return listOfBathrooms;
+  }
+
+  // start the application by centering the map on the user's location
+  useEffect(loadData,[])
+>>>>>>> main
 
 
   const findDirections = () => {
@@ -90,6 +104,34 @@ function App() {
       travelMode: window.google.maps.TravelMode.WALKING,
     }, (result, status) => {
       // console.log(result);
+      if (status === window.google.maps.DirectionsStatus.OK) {
+        setDirections(result);
+        // get distance
+        // get walking time
+      } else {
+        console.error(`error fetching directions ${result}`);
+      }
+    })
+  }
+
+  const findSpecificRestroom = (bathroomName) => {
+    console.log("wtf");
+    let lt = 0;
+    let long = 0;
+
+    for(let i = 0; i < listOfBathrooms.length; i++){
+      if(listOfBathrooms[i].name == bathroomName){
+        lt = listOfBathrooms[i].latitude;
+        long = listOfBathrooms[i].longitude;
+        break;
+      }
+    }
+    DirectionsService.route({
+      origin: new window.google.maps.LatLng(lat, lng),
+      destination: new window.google.maps.LatLng(lt, long),
+      travelMode: window.google.maps.TravelMode.WALKING,
+    }, (result, status) => {
+      console.log(result);
       if (status === window.google.maps.DirectionsStatus.OK) {
         setDirections(result);
         // get distance
@@ -211,12 +253,16 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
     <div className='App'>
       <GoogleMap className='mapContainer' mapContainerStyle={mapContainerStyle} style={{width: '100vw', height: '90vh'}} zoom = {16} center = {{lat:lat, lng:lng}} options={{
             styles: mapStyle,
+            streetViewControl: false,
         }}>
         {listOfBathrooms.map((item)=>(
           <RestroomMarker
             key={item._id}
             position={{lat:item.latitude, lng:item.longitude}}
             data={item}
+            getDirections={findDirections}
+            reload={loadData}
+            getSpecificDirections={(bathroomName) => findSpecificRestroom(bathroomName)}
           />
         ))}
         {
@@ -229,7 +275,12 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
       <ClosestBathroomButton clickHandler={findDirections}></ClosestBathroomButton>
       <HideBuildingsButton clickHandler={hideBuildingNames} hidden={buildingsHidden}></HideBuildingsButton>
       <HideBathroomsButton clickHandler={hideBathrooms} hidden={bathroomsHidden}></HideBathroomsButton>
+<<<<<<< HEAD
       <ModalSheet lat={lat} lon={lng} />
+=======
+      <ModalSheet />
+
+>>>>>>> main
 
     </div>
   );

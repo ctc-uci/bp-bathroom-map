@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './ModalSheet.css';
 import Sheet from 'react-modal-sheet';
+<<<<<<< HEAD
 import Axios from 'axios';
 import Fuse from 'fuse.js';
 import SearchCard from './SearchCard.js';
 
 const ModalSheet = ({ lat, lng}) => {
+=======
+import search_icon from "../assets/search_icon.png";
+
+const ModalSheet = (props) => {
+>>>>>>> main
   const [isOpen, setOpen] = useState(false);
 
   const options= { distance:20, findAllMatches:true, limit:10 };
@@ -85,9 +91,10 @@ const ModalSheet = ({ lat, lng}) => {
   }
 
   return (
-    <div>
+    <div className='search'>
       <div className="search-wrapper">
-        <i className="bi bi-search search-icon"></i>
+        {/* <i className="bi bi-search search-icon"></i> */}
+        <img src={search_icon} className='search-image'></img>
         <input
           className="search-bar-btn"
           onClick={() => setOpen(true)}
@@ -98,6 +105,7 @@ const ModalSheet = ({ lat, lng}) => {
         <Sheet.Container>
           <Sheet.Header />
           <Sheet.Content>
+<<<<<<< HEAD
             <div className="modal-body">
               <div className="search-header">
                 <div className="search-wrapper">
@@ -119,6 +127,19 @@ const ModalSheet = ({ lat, lng}) => {
                 {
                   bathroomResults.map((idx) => createCard(idx))
                 }
+=======
+            <div class="modal-body">
+              <div className="search-wrapper">
+                <img src={search_icon} className='search-image'></img>
+                {/* <i className="bi bi-search search-icon"></i> */}
+                <input
+                  className="search-bar-btn"
+                  placeholder="Search Bathrooms"
+                  value={searchValue}
+                  onChange={changeHandler}
+                  autoFocus
+                ></input>
+>>>>>>> main
               </div>
             </div>
           </Sheet.Content>
