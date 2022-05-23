@@ -12,7 +12,7 @@ import {
 } from "@react-google-maps/api"
 import { useState, useEffect } from 'react'
 import Axios from "axios"
-
+import {BrowserView, MobileView} from 'react-device-detect';
 import './App.css';
 import ClosestBathroomButton from './components/ClosestBathroomButton';
 import RestroomMarker from './components/RestroomMarker';
@@ -21,6 +21,8 @@ import findClosestMarker from './functions/findClosestMarker';
 import HideBuildingsButton from './components/HideBuildingsButton';
 import HideBathroomsButton from './components/HideBathrooms';
 import ModalSheet from './components/ModalSheet';
+import ctcLogo from './assets/ctc-logo 2.png'
+import map from './assets/MAP.png'
 //import hideBuildingNames from "./functions/hideBuildingNames";
 
 /*
@@ -139,6 +141,11 @@ function App() {
     height: "90vh"
   }
 
+  const mapContainerStyleDesktop = {
+    width: "50vw",
+    height: "100vh"
+  }
+
   // set dimensions of map
 
   const {isLoaded, loadError} = useLoadScript({
@@ -241,33 +248,76 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
   */
 
   return (
-    <div class="App">
-      <GoogleMap className="mapContainer" mapContainerStyle={mapContainerStyle} style={{width: "100vw", height: "90vh"}} zoom = {16} center = {{lat:lat, lng:lng}} options={{
-            styles: mapStyle,
-            streetViewControl: false,
-        }}>
-        {listOfBathrooms.map((item)=>(
-          <RestroomMarker
-            key={item._id}
-            position={{lat:item.latitude, lng:item.longitude}}
-            data={item}
-            getDirections={findDirections}
-            getSpecificDirections={(bathroomName) => findSpecificRestroom(bathroomName)}
-          />
-        ))}
-        {
-          lat && lng &&
-          <Marker position={{lat: lat, lng: lng}} icon={anteaterMarker}/>
-        }
+    <div>
+    <MobileView>
+      <div class="App">
+          <GoogleMap className="mapContainer" mapContainerStyle={mapContainerStyle} style={{width: "100vw", height: "90vh"}} zoom = {16} center = {{lat:lat, lng:lng}} options={{
+                styles: mapStyle,
+                streetViewControl: false,
+            }}>
+            {listOfBathrooms.map((item)=>(
+              <RestroomMarker
+                key={item._id}
+                position={{lat:item.latitude, lng:item.longitude}}
+                data={item}
+                getDirections={findDirections}
+                getSpecificDirections={(bathroomName) => findSpecificRestroom(bathroomName)}
+              />
+            ))}
+            {
+              lat && lng &&
+              <Marker position={{lat: lat, lng: lng}} />
+            }
 
-        <DirectionsRenderer directions={directions}/>
-      </GoogleMap>
-      <ClosestBathroomButton clickHandler={findDirections}></ClosestBathroomButton>
-      <HideBuildingsButton clickHandler={hideBuildingNames} hidden={buildingsHidden}></HideBuildingsButton>
-      <HideBathroomsButton clickHandler={hideBathrooms} hidden={bathroomsHidden}></HideBathroomsButton>
-      <ModalSheet />
+            <DirectionsRenderer directions={directions}/>
+          </GoogleMap>
+          <div className='searchAndButton'>
+            <ModalSheet />
+            <ClosestBathroomButton clickHandler={findDirections}></ClosestBathroomButton>
+          </div>
+          <HideBuildingsButton clickHandler={hideBuildingNames} hidden={buildingsHidden}></HideBuildingsButton>
+          <HideBathroomsButton clickHandler={hideBathrooms} hidden={bathroomsHidden}></HideBathroomsButton>
+      </div>
+    </MobileView>
+    <BrowserView>
+      <div class="AppDesktop">
+        <div className='desktopMessage'>
+          <div className='bathroomMapLogo'>
+            <img src={ctcLogo} className='logo'></img>
+            <div className='logoText'>
+              UCI Bathroom Map
+            </div>
+          </div>
+          <div className='userMsgContainer'>
+            <div className='userMsg'>
+              Hello &#128075;,
+              <br></br>
+              Please use your mobile device to use the service
+            </div>
+          </div>
+        </div>
+        <GoogleMap className="mapContainer" mapContainerStyle={mapContainerStyleDesktop} style={{width: "100vw", height: "100vh"}} zoom = {16} center = {{lat:lat, lng:lng}} options={{
+                    styles: mapStyle,
+                    streetViewControl: false,
+                }}>
+                {listOfBathrooms.map((item)=>(
+                  <RestroomMarker
+                    key={item._id}
+                    position={{lat:item.latitude, lng:item.longitude}}
+                    data={item}
+                    // getDirections={findDirections}
+                    // getSpecificDirections={(bathroomName) => findSpecificRestroom(bathroomName)}
+                  />
+                ))}
+                {
+                  lat && lng &&
+                  <Marker position={{lat: lat, lng: lng}} />
+                }
 
-
+                <DirectionsRenderer directions={directions}/>
+              </GoogleMap>
+          </div>
+      </BrowserView>
     </div>
   );
 }
