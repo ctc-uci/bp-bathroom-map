@@ -3,7 +3,7 @@ import './closestBathroomButton.css'
 
 const ClosestBathroomButton = (props) => {
   return (
-    <button class="bathroom-button bathroom-button-text" onClick={props.clickHandler}>Find Closest Restroom</button>
+    <button className="bathroom-button bathroom-button-text" onClick={props.clickHandler}>Find Closest Restroom</button>
   )
 }
 

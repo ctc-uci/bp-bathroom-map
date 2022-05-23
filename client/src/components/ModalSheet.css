@@ -49,6 +49,32 @@
     padding: 0px 20px;
 }
 
+<<<<<<< HEAD
+.search-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.cancel-button {
+    padding: 0 20px;
+    max-height: 20px;
+    border: none;
+    font-family: 'SF-Pro';
+    background-color: White;
+    font-size: 30px;
+    color: #007BFF;
+}
+
+.button-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+=======
 .search-image{
     width: 2vh;
     height: 2vh;
@@ -57,3 +83,4 @@
     align-self: center;
 
 }
+>>>>>>> main

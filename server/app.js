@@ -56,6 +56,7 @@ app.listen(PORT, () => {
 
 /*
 //////////////////////////////// SKELETON //////////////////////////////////
+/*
 - bathroom table structure
     - _id : string
     - name : string
