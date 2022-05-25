@@ -60,7 +60,6 @@ const ModalSheet = ({ lat, lng }) => {
     const val = e.target.value;
     event.preventDefault(); //prevent default behavior
     let similarBathrooms= fuse.search(val);
-    console.log(similarBathrooms.map((e) => bathroomsJSON[e.refIndex]));
     similarBathrooms.sort((a,b) => calcSearchWeight(a.refIndex,b.refIndex));
     setBathroomResults(similarBathrooms);
   }
@@ -68,23 +67,31 @@ const ModalSheet = ({ lat, lng }) => {
   const createCard = (idx) => {
     const bathroom = bathroomsJSON[idx]
     const avg_rating = calcRating(bathroom?.reviews);
-    console.log(avg_rating);
+    // console.log(avg_rating);
+
+    const onSearchResultClick = () => {
+      setOpen(false);
+      console.log(bathroom.name);
+      // showInfos[bathroom._id](true);
+    }
 
     return (
-      <SearchCard
-        key={bathroom._id}
-        name={bathroom.name}
-        rating = {avg_rating}
-        img={bathroom.img}
-      />
+      <div onClick={onSearchResultClick}>
+        <SearchCard
+          key={bathroom._id}
+          name={bathroom.name}
+          rating = {avg_rating}
+          img={bathroom.img}
+          hours={bathroom.hours}
+        />
+      </div>
     )
   }
 
   return (
     <div className='search'>
       <div className="search-wrapper">
-        {/* <i className="bi bi-search search-icon"></i> */}
-        <img src={search_icon} className='search-image'></img>
+        <img src={search_icon} className='search-image' />
         <input
           className="search-bar-btn"
           onClick={() => setOpen(true)}
@@ -98,13 +105,13 @@ const ModalSheet = ({ lat, lng }) => {
             <div className="modal-body">
               <div className="search-header">
                 <div className="search-wrapper">
-                  <i className="bi bi-search search-icon"></i>
+                  <i className="bi bi-search search-icon" />
                   <input
                     className="search-bar-btn"
                     placeholder="Search Bathrooms"
                     onChange={changeHandler}
                     autoFocus
-                  ></input>
+                  />
                 </div>
 
                 <div className="button-wrapper">

@@ -10,6 +10,8 @@ const RestroomMarker = (props) => {
   // console.log(props)
   const [showInfo, setShowInfo] = useState(false);
 
+  // props.myRef.current.setShowInfo = setShowInfo;
+
   const toggleShowInfo = () => {
     // console.log('clicked');
     if (showInfo === false) {
