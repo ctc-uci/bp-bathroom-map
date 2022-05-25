@@ -70,11 +70,6 @@ function App() {
       setLng(position.coords.longitude)
       //console.log(lat,lng)
     })
-    Axios.get('http://localhost:3001/bathrooms').then((response) => {
-      // console.log(response);
-      setListOfBathrooms(response.data)
-    })
-  },[]);
     await Axios.get("http://localhost:3001/bathrooms").then(async (response) => {
       console.log(response);
       setListOfBathrooms(response.data)
@@ -273,7 +268,7 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
       <HideBuildingsButton clickHandler={hideBuildingNames} hidden={buildingsHidden}></HideBuildingsButton>
       <HideBathroomsButton clickHandler={hideBathrooms} hidden={bathroomsHidden}></HideBathroomsButton>
       <ModalSheet lat={lat} lon={lng} />
-      <ModalSheet />
+      {/* <ModalSheet /> */}
     </div>
   );
 }

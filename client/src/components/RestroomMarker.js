@@ -7,11 +7,11 @@ import {
 import CardSheet from './Cardsheet';
 
 const RestroomMarker = (props) => {
-  console.log(props)
+  // console.log(props)
   const [showInfo, setShowInfo] = useState(false);
 
   const toggleShowInfo = () => {
-    console.log('clicked');
+    // console.log('clicked');
     if (showInfo === false) {
       setShowInfo(true);
     } else {
