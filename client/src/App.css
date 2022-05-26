@@ -1,8 +1,70 @@
+@font-face {
+  font-family: 'SF-Pro';
+  src: url("./assets/SF-Pro.OTF") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+
 .App {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    justify-content: space-evenly;
+    justify-content:flex-start;
+}
 
+.AppDesktop {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+  justify-content: space-between;
+}
+
+.searchAndButton{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  justify-items: center;
+  padding-bottom: 1vw;
+}
+
+.desktopMessage{
+  display: flex;
+  flex-direction: column;
+}
+
+.bathroomMapLogo{
+  display: flex;
+  padding-left: 1vh;
+  padding-top: 1vh;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logoText{
+  padding-left: 1vh;
+  font-family: SF-Pro;
+  font-weight: bolder;
+
+}
+
+.logo{
+  max-width: 7.5%;
+  height: auto;
+}
+
+.userMsgContainer{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userMsg{
+  padding-left: 15%;
+  padding-right: 15%;
+  font-family: SF-Pro;
+  font-size: 2.5em;
+  font-weight: bolder;
 }

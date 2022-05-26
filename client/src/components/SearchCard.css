@@ -25,6 +25,7 @@
 .name {
     font-size: 2em;
     padding-left: 5vw;
+
     align-self: flex-start;
     text-align: left;
     /*-------> Dot dot dot at the end

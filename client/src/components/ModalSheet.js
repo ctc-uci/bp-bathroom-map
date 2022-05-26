@@ -4,6 +4,7 @@ import Sheet from 'react-modal-sheet';
 import Axios from 'axios';
 import Fuse from 'fuse.js';
 import SearchCard from './SearchCard.js';
+
 import search_icon from '../assets/search_icon.png';
 import CardSheet from './Cardsheet.js';
 
@@ -14,6 +15,7 @@ const rad = (x) => {
 const R = 6371; // radius of earth in km
 
 const ModalSheet = ({ lat, lng, reload, getSpecificDirections }) => {
+
   const [isOpen, setOpen] = useState(false);
 
   const options= { distance:20, findAllMatches:true, limit:10 };
