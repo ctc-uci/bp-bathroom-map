@@ -1,86 +1,82 @@
 @font-face {
-    font-family: 'SF-Pro';
-    src: url("../assets/SF-Pro.OTF") format("opentype");
-    font-style: normal;
-    font-weight: normal;
+  font-family: 'SF-Pro';
+  src: url("../assets/SF-Pro.OTF") format("opentype");
+  font-style: normal;
+  font-weight: normal;
 }
 
-.search{
-    padding-top: 1vw;
-    padding-bottom: 1vw;
-    width: 85vw;
+.search {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
 }
 
 .search-wrapper {
-    /* padding: 5px 20px;  */
-    padding-left: 3%;
-    border-radius: 5px;
-    border: none;
-    background-color: #dee2e6;
-    display: flex;
-    justify-content: left;
-    /* margin: 10px 0px; */
-    height: 4.5vh;
-}
+  padding: 0px 50px;
+  /* padding-left: 3%; */
+  border-radius: 5px;
+  border: none;
+  background-color: #dee2e6;
+  display: flex;
+  justify-content: left;
+  /* margin-left: 6%; */
+  /* margin: 10px 0px; */
+  height: 5vh;
+  align-items: center;
 
-.search-icon {
-    padding-top: 3px;
 }
 
 .search-bar-btn {
-    background-color: #dee2e6;
-    /* padding: 3px 3px 3px 10px; */
-    border-radius: 5px;
-    border-width: 0px;
-    /* padding-top: 5px; */
-    /* width: 70vw; */
-    border: none;
-    font-family: 'SF-Pro';
-    src: url("../assets/SF-Pro.OTF") format("opentype");
-    font-size: 16px;
+  background-color: #dee2e6;
+  padding: 3px 3px 3px 10px;
+  border-radius: 5px;
+  border-width: 0px;
+  padding-top: 5px;
+  /* width: 60vw; */
+  border: none;
+  font-family: 'SF-Pro';
+  src: url("../assets/SF-Pro.OTF") format("opentype");
+  font-size: 16px;
 }
 
 .search-bar-btn:focus {
-    outline: none;
+  outline: none;
 }
 
 .modal-body {
-    text-align: center;
-    padding: 0px 20px;
+  text-align: center;
+  padding: 0px 20px;
 }
 
-<<<<<<< HEAD
 .search-header {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
 }
 
 .cancel-button {
-    padding: 0 20px;
-    max-height: 20px;
-    border: none;
-    font-family: 'SF-Pro';
-    background-color: White;
-    font-size: 30px;
-    color: #007BFF;
+  padding: 0 20px;
+  max-height: 20px;
+  border: none;
+  font-family: 'SF-Pro';
+  background-color: White;
+  font-size: 1.25em;
+  color: #007BFF;
 }
 
 .button-wrapper {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    padding-bottom: 10px;
-}
-=======
-.search-image{
-    width: 2vh;
-    height: 2vh;
-    top:50%;
-    object-fit: contain;
-    align-self: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
 
 }
->>>>>>> main
+.search-image{
+  width: 2vh;
+  height: 2vh;
+  top:50%;
+  object-fit: contain;
+  align-self: center;
+
+}

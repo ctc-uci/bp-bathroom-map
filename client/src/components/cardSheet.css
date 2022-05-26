@@ -1,115 +1,115 @@
 @font-face {
-    font-family: 'SF-Pro';
-    src: url("../assets/SF-Pro.OTF") format("opentype");
-    font-style: normal;
-    font-weight: normal;
+  font-family: 'SF-Pro';
+  src: url("../assets/SF-Pro.OTF") format("opentype");
+  font-style: normal;
+  font-weight: normal;
 }
 
 .sheet {
-    padding: 10px 20px;
+  padding: 10px 20px;
 }
 
 .name {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    /* position: relative; */
-    /* height: 5vw; */
-    /* font-size: large; */
-    /* font-weight: 500; */
-    /* top: 50%; */
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  flex-direction: row;
+  /* position: relative;
+  /* height: 5vw; */
+  /* font-weight: 500; */
+  /* top: 50%; */
 }
 
 .nameSpace {
-    margin-bottom: 0%;
-    text-align: center;
+  margin-bottom: 0%;
+  text-align: left;
+  font-size: 1em;
 }
 
 .bathroom-img {
-    max-height: 200px;
-    max-width: 150px;
-    border-radius: 10px;
+  max-height: 200px;
+  max-width: 150px;
+  border-radius: 10px;
 }
 
 .subtitle-text {
-    color: #868E96;
+  color: #868E96;
 }
 
 .row-center {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .row-start {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
 }
 
 .row-between {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .find-bathroom-btn {
-    background-color: #007BFF;
-    border-radius: 4.8px;
-    text-align: center;
-    width: 100vw;
-    height: 5vh;
-    border-width: 0px;
-    margin-top: 10px;
-    padding: 5px 0px;
-    color: white;
+  background-color: #007BFF;
+  border-radius: 4.8px;
+  text-align: center;
+  width: 100vw;
+  height: 5vh;
+  border-width: 0px;
+  margin-top: 10px;
+  padding: 5px 0px;
+  color: white;
 }
 
 .find-bathroom-btn:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .find-bathroom-btn-text {
-    color: white;
-    font-family: 'SF-Pro';
-    font-style: normal;
-    font-weight: lighter;
-    font-size: 100%;
+  color: white;
+  font-family: 'SF-Pro';
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 100%;
 }
 
 .sideScroll {
-    overflow: auto;
-    white-space: nowrap;
-    width: 100vw;
+  overflow: auto;
+  white-space: nowrap;
+  width: 100vw;
 }
 
 .sideScroll img {
-    display: inline-block;
-    padding-right: 1%;
+  display: inline-block;
+  padding-right: 1%;
 }
 
 .close-sheet-btn {
-    margin-left: auto;
-    top: 50%;
-    /*margin-right:0;
-  margin-bottom: 0;
-  border: none;
-  border-radius: 10%; */
-    width: 5vh;
-    height: 5vh;
-    justify-content: center;
-    object-fit: contain;
+  margin-left: auto;
+  top: 50%;
+  /*margin-right:0;
+margin-bottom: 0;
+border: none;
+border-radius: 10%; */
+  width: 5vh;
+  height: 5vh;
+  justify-content: center;
+  object-fit: contain;
 }
 
 .num-ratings {
-    padding-left: 5px;
+  padding-left: 5px;
 }
 
 .add-review-btn {
-    padding: 3px;
-    color: #007BFF;
+  padding: 3px;
+  color: #007BFF;
 }

@@ -21,6 +21,7 @@ import findClosestMarker from './functions/findClosestMarker';
 import HideBuildingsButton from './components/HideBuildingsButton';
 import HideBathroomsButton from './components/HideBathrooms';
 import ModalSheet from './components/ModalSheet';
+import Pointer from './assets/Pointer.png';
 
 import ctcLogo from './assets/ctc-logo 2.png'
 import map from './assets/MAP.png'
@@ -80,7 +81,7 @@ function App() {
       // console.log(response);
       setListOfBathrooms(response.data)
     })
-  },[]);
+
     await Axios.get("http://localhost:3001/bathrooms").then(async (response) => {
       console.log(response);
       setListOfBathrooms(response.data)
@@ -276,7 +277,7 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
             ))}
             {
               lat && lng &&
-              <Marker position={{lat: lat, lng: lng}} />
+              <Marker icon={Pointer}position={{lat: lat, lng: lng}} />
             }
 
             <DirectionsRenderer directions={directions}/>
@@ -330,6 +331,6 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
       </BrowserView>
     </div>
   );
-}
+  }
 
 export default App;
