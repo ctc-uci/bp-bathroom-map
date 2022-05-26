@@ -37,6 +37,7 @@
   font-family: 'SF-Pro';
   src: url("../assets/SF-Pro.OTF") format("opentype");
   font-size: 16px;
+
 }
 
 .search-bar-btn:focus {
@@ -63,6 +64,7 @@
   background-color: White;
   font-size: 1.25em;
   color: #007BFF;
+
 }
 
 .button-wrapper {

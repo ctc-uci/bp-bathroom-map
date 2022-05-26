@@ -1,17 +1,15 @@
 import React from 'react';
-// import { compose, withProps, lifecycle } from 'recompose';
 import {
   GoogleMap,
-  // withGoogleMap,
   useLoadScript,
   Marker,
-  // InfoWindow,
   DirectionsRenderer,
 
 } from "@react-google-maps/api"
 import { useState, useEffect } from 'react'
 import Axios from "axios"
 import {BrowserView, MobileView} from 'react-device-detect';
+
 
 import './App.css';
 import ClosestBathroomButton from './components/ClosestBathroomButton';
@@ -22,10 +20,9 @@ import HideBuildingsButton from './components/HideBuildingsButton';
 import HideBathroomsButton from './components/HideBathrooms';
 import ModalSheet from './components/ModalSheet';
 import Pointer from './assets/Pointer.png';
-
 import ctcLogo from './assets/ctc-logo 2.png'
 import map from './assets/MAP.png'
-//import hideBuildingNames from "./functions/hideBuildingNames";
+
 
 
 /*
@@ -77,18 +74,13 @@ function App() {
       setLng(position.coords.longitude)
       //console.log(lat,lng)
     })
-    Axios.get('http://localhost:3001/bathrooms').then((response) => {
-      // console.log(response);
-      setListOfBathrooms(response.data)
-    })
-
     await Axios.get("http://localhost:3001/bathrooms").then(async (response) => {
       console.log(response);
       setListOfBathrooms(response.data)
     })
 
-    console.log("hi");
-    console.log(listOfBathrooms);
+    // console.log("hi");
+    // console.log(listOfBathrooms);
     return listOfBathrooms;
   }
 
@@ -258,6 +250,8 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
 
   */
 
+  // const showInfos = {};
+
   return (
     <div>
     <MobileView>
@@ -283,7 +277,12 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
             <DirectionsRenderer directions={directions}/>
           </GoogleMap>
           <div className='searchAndButton'>
-            <ModalSheet />
+            <ModalSheet
+            lat={lat}
+            lon={lng}
+            reload={loadData}
+            getSpecificDirections={(bathroomName) => findSpecificRestroom(bathroomName)}
+          />
             <ClosestBathroomButton clickHandler={findDirections}></ClosestBathroomButton>
           </div>
           <HideBuildingsButton clickHandler={hideBuildingNames} hidden={buildingsHidden}></HideBuildingsButton>
