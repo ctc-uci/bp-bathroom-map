@@ -237,7 +237,7 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
 
   */
 
-  const showInfos = {};
+  // const showInfos = {};
 
   return (
     <div className='App'>
@@ -274,7 +274,12 @@ if the names are already hidden, we'll show them. otherwise, we'll hide them.
       <ClosestBathroomButton clickHandler={findDirections} />
       <HideBuildingsButton clickHandler={hideBuildingNames} hidden={buildingsHidden} />
       <HideBathroomsButton clickHandler={hideBathrooms} hidden={bathroomsHidden} />
-      <ModalSheet lat={lat} lon={lng} />
+      <ModalSheet
+        lat={lat}
+        lon={lng}
+        reload={loadData}
+        getSpecificDirections={(bathroomName) => findSpecificRestroom(bathroomName)}
+      />
     </div>
   );
 }

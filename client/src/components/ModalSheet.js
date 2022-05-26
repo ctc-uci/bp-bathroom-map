@@ -5,6 +5,7 @@ import Axios from 'axios';
 import Fuse from 'fuse.js';
 import SearchCard from './SearchCard.js';
 import search_icon from '../assets/search_icon.png';
+import CardSheet from './Cardsheet.js';
 
 const rad = (x) => {
   return x * Math.PI / 180;
@@ -12,13 +13,17 @@ const rad = (x) => {
 
 const R = 6371; // radius of earth in km
 
-const ModalSheet = ({ lat, lng }) => {
+const ModalSheet = ({ lat, lng, reload, getSpecificDirections }) => {
   const [isOpen, setOpen] = useState(false);
 
   const options= { distance:20, findAllMatches:true, limit:10 };
   const [fuse, setFuse] = useState();
   const [bathroomResults, setBathroomResults] = useState([]);
   const [bathroomsJSON, setBathroomsJSON] = useState({});
+
+
+  const [showRestroomCard, setShowRestroomCard] = useState(false);
+  const [cardData, setCardData] = useState({});
 
   const getBathroomNames = async () => {
     const res = await Axios.get("http://localhost:3001/bathrooms");
@@ -73,6 +78,8 @@ const ModalSheet = ({ lat, lng }) => {
       setOpen(false);
       console.log(bathroom.name);
       // showInfos[bathroom._id](true);
+      setCardData(bathroom);
+      setShowRestroomCard(true);
     }
 
     return (
@@ -129,6 +136,17 @@ const ModalSheet = ({ lat, lng }) => {
         </Sheet.Container>
         <Sheet.Backdrop />
       </Sheet>
+
+      {
+        showRestroomCard &&
+        <CardSheet
+          data={cardData} // change based on card
+          reload={reload}
+          getSpecificDirections={(bathroomName) => getSpecificDirections(bathroomName)}
+          showRestroomCard={showRestroomCard}
+          setShowRestroomCard={setShowRestroomCard}
+        />
+      }
     </div>
   );
 }

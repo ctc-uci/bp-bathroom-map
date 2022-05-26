@@ -8,16 +8,14 @@ import CardSheet from './Cardsheet';
 
 const RestroomMarker = (props) => {
   // console.log(props)
-  const [showInfo, setShowInfo] = useState(false);
-
-  // props.myRef.current.setShowInfo = setShowInfo;
+  const [showRestroomCard, setShowRestroomCard] = useState(false);
 
   const toggleShowInfo = () => {
     // console.log('clicked');
-    if (showInfo === false) {
-      setShowInfo(true);
+    if (showRestroomCard === false) {
+      setShowRestroomCard(true);
     } else {
-      setShowInfo(false);
+      setShowRestroomCard(false);
     }
     // setShowInfo(!showInfo);
   }
@@ -33,15 +31,17 @@ const RestroomMarker = (props) => {
 
       {
 
-        showInfo &&
+        showRestroomCard &&
         <CardSheet
           data={props.data}
           reload={props.reload}
           getDirections={() => {
             props.getDirections();
-            setShowInfo(false);
+            setShowRestroomCard(false);
           }}
           getSpecificDirections={(bathroomName) => props.getSpecificDirections(bathroomName)}
+          showRestroomCard={showRestroomCard}
+          setShowRestroomCard={setShowRestroomCard}
         />
 
       //   showInfo && <InfoWindow position={{lat: props.position.lat + 0.0002, lng: props.position.lng}} onCloseClick={toggleShowInfo}>
